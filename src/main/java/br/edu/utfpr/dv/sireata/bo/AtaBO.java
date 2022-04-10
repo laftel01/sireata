@@ -31,15 +31,20 @@ import br.edu.utfpr.dv.sireata.model.ParticipanteReport;
 
 public class AtaBO {
 	
+	public void exceptionTreatment(Exception e) throws Exception{
+		Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
+		
+		throw new Exception(e.getMessage());
+	}
+	
 	public Ata buscarPorId(int id) throws Exception{
 		try{
 			AtaDAO dao = new AtaDAO();
 			
 			return dao.buscarPorId(id);
 		}catch(Exception e){
-			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
-			
-			throw new Exception(e.getMessage());
+			exceptionTreatment(e);
+			return null;
 		}
 	}
 	
@@ -49,9 +54,8 @@ public class AtaBO {
 			
 			return dao.buscarPorNumero(idOrgao, tipo, numero, ano);
 		}catch(Exception e){
-			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
-			
-			throw new Exception(e.getMessage());
+			exceptionTreatment(e);
+			return null;
 		}
 	}
 	
@@ -61,9 +65,8 @@ public class AtaBO {
 			
 			return dao.buscarPorPauta(idPauta);
 		}catch(Exception e){
-			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
-			
-			throw new Exception(e.getMessage());
+			exceptionTreatment(e);
+			return null;
 		}
 	}
 	
@@ -73,9 +76,8 @@ public class AtaBO {
 			
 			return dao.buscarProximoNumeroAta(idOrgao, ano, tipo);
 		}catch(Exception e){
-			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
-			
-			throw new Exception(e.getMessage());
+			exceptionTreatment(e);
+			return 0;
 		}
 	}
 	
@@ -85,9 +87,8 @@ public class AtaBO {
 			
 			return dao.listarPublicadas();
 		}catch(Exception e){
-			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
-			
-			throw new Exception(e.getMessage());
+			exceptionTreatment(e);
+			return null;
 		}
 	}
 	
@@ -97,9 +98,8 @@ public class AtaBO {
 			
 			return dao.listarPorOrgao(idOrgao);
 		}catch(Exception e){
-			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
-			
-			throw new Exception(e.getMessage());
+			exceptionTreatment(e);
+			return null;
 		}
 	}
 	
@@ -109,9 +109,8 @@ public class AtaBO {
 			
 			return dao.listarPorDepartamento(idDepartamento);
 		}catch(Exception e){
-			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
-			
-			throw new Exception(e.getMessage());
+			exceptionTreatment(e);
+			return null;
 		}
 	}
 	
@@ -121,9 +120,8 @@ public class AtaBO {
 			
 			return dao.listarPorCampus(idCampus);
 		}catch(Exception e){
-			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
-			
-			throw new Exception(e.getMessage());
+			exceptionTreatment(e);
+			return null;
 		}
 	}
 	
@@ -133,9 +131,8 @@ public class AtaBO {
 			
 			return dao.listarNaoPublicadas(idUsuario);
 		}catch(Exception e){
-			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
-			
-			throw new Exception(e.getMessage());
+			exceptionTreatment(e);
+			return null;
 		}
 	}
 	
@@ -145,9 +142,8 @@ public class AtaBO {
 			
 			return dao.listarPorOrgao(idOrgao, idUsuario);
 		}catch(Exception e){
-			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
-			
-			throw new Exception(e.getMessage());
+			exceptionTreatment(e);
+			return null;
 		}
 	}
 	
@@ -157,9 +153,8 @@ public class AtaBO {
 			
 			return dao.listarPorDepartamento(idDepartamento, idUsuario);
 		}catch(Exception e){
-			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
-			
-			throw new Exception(e.getMessage());
+			exceptionTreatment(e);
+			return null;
 		}
 	}
 	
@@ -169,9 +164,8 @@ public class AtaBO {
 			
 			return dao.listarPorCampus(idCampus, idUsuario);
 		}catch(Exception e){
-			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
-			
-			throw new Exception(e.getMessage());
+			exceptionTreatment(e);
+			return null;
 		}
 	}
 	
@@ -242,9 +236,8 @@ public class AtaBO {
 			
 			return id;
 		}catch(Exception e){
-			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
-			
-			throw new Exception(e.getMessage());
+			exceptionTreatment(e);
+			return 0;
 		}
 	}
 	
@@ -258,9 +251,8 @@ public class AtaBO {
 			
 			return dao.temComentarios(idAta);
 		}catch(Exception e){
-			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
-			
-			throw new Exception(e.getMessage());
+			exceptionTreatment(e);
+			return false;
 		}
 	}
 	
@@ -270,9 +262,8 @@ public class AtaBO {
 			
 			return dao.isPresidenteOuSecretario(idUsuario, idAta);
 		}catch(Exception e){
-			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
-			
-			throw new Exception(e.getMessage());
+			exceptionTreatment(e);
+			return false;
 		}
 	}
 	
@@ -282,9 +273,8 @@ public class AtaBO {
 			
 			return dao.isPresidente(idUsuario, idAta);
 		}catch(Exception e){
-			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
-			
-			throw new Exception(e.getMessage());
+			exceptionTreatment(e);
+			return false;
 		}
 	}
 	
@@ -294,9 +284,8 @@ public class AtaBO {
 			
 			return dao.isPublicada(idAta);
 		}catch(Exception e){
-			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
-			
-			throw new Exception(e.getMessage());
+			exceptionTreatment(e);
+			return false;
 		}
 	}
 	
@@ -310,9 +299,7 @@ public class AtaBO {
 			
 			dao.liberarComentarios(idAta);
 		}catch(Exception e){
-			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
-			
-			throw new Exception(e.getMessage());
+			exceptionTreatment(e);
 		}
 	}
 	
@@ -326,9 +313,7 @@ public class AtaBO {
 			
 			dao.bloquearComentarios(idAta);
 		}catch(Exception e){
-			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
-			
-			throw new Exception(e.getMessage());
+			exceptionTreatment(e);
 		}
 	}
 	
@@ -408,9 +393,8 @@ public class AtaBO {
 			
 			return report;
 		}catch(Exception e){
-			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
-			
-			throw new Exception(e.getMessage());
+			exceptionTreatment(e);
+			return null;
 		}
 	}
 	
@@ -448,9 +432,8 @@ public class AtaBO {
 				return pdf.toByteArray();				
 			}
 		}catch(Exception e){
-			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
-			
-			throw new Exception(e.getMessage());
+			exceptionTreatment(e);
+			return null;
 		}
 	}
 	
@@ -465,9 +448,7 @@ public class AtaBO {
 			
 			dao.publicar(idAta, pdf);
 		}catch(Exception e){
-			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
-			
-			throw new Exception(e.getMessage());
+			exceptionTreatment(e);
 		}
 	}
 	
@@ -484,9 +465,8 @@ public class AtaBO {
 			
 			return dao.excluir(idAta);
 		}catch(Exception e){
-			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
-			
-			throw new Exception(e.getMessage());
+			exceptionTreatment(e);
+			return false;
 		}
 	}
 	

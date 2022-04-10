@@ -8,6 +8,12 @@ import br.edu.utfpr.dv.sireata.dao.CampusDAO;
 import br.edu.utfpr.dv.sireata.model.Campus;
 
 public class CampusBO {
+
+	public void exceptionTreatment(Exception e) throws Exception{
+		Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
+		
+		throw new Exception(e.getMessage());
+	}
 	
 	public Campus buscarPorId(int id) throws Exception{
 		try{
@@ -15,9 +21,8 @@ public class CampusBO {
 			
 			return dao.buscarPorId(id);
 		}catch(Exception e){
-			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
-			
-			throw new Exception(e.getMessage());
+			exceptionTreatment(e);
+			return null;
 		}
 	}
 	
@@ -27,9 +32,8 @@ public class CampusBO {
 			
 			return dao.buscarPorDepartamento(idDepartamento);
 		}catch(Exception e){
-			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
-			
-			throw new Exception(e.getMessage());
+			exceptionTreatment(e);
+			return null;
 		}
 	}
 	
@@ -39,9 +43,8 @@ public class CampusBO {
 			
 			return dao.listarTodos(apenasAtivos);
 		}catch(Exception e){
-			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
-			
-			throw new Exception(e.getMessage());
+			exceptionTreatment(e);
+			return null;
 		}
 	}
 	
@@ -51,9 +54,8 @@ public class CampusBO {
 			
 			return dao.listarParaCriacaoAta(idUsuario);
 		}catch(Exception e){
-			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
-			
-			throw new Exception(e.getMessage());
+			exceptionTreatment(e);
+			return null;
 		}
 	}
 	
@@ -63,9 +65,8 @@ public class CampusBO {
 			
 			return dao.listarParaConsultaAtas(idUsuario);
 		}catch(Exception e){
-			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
-			
-			throw new Exception(e.getMessage());
+			exceptionTreatment(e);
+			return null;
 		}
 	}
 	
@@ -79,9 +80,8 @@ public class CampusBO {
 			
 			return dao.salvar(campus);
 		}catch(Exception e){
-			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
-			
-			throw new Exception(e.getMessage());
+			exceptionTreatment(e);
+			return 0;
 		}
 	}
 

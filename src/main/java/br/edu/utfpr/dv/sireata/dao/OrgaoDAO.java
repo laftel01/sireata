@@ -13,6 +13,15 @@ import br.edu.utfpr.dv.sireata.model.OrgaoMembro;
 import br.edu.utfpr.dv.sireata.model.Usuario;
 
 public class OrgaoDAO {
+
+	private void closeCon(Connection conn, Statement stmt, ResultSet rs) throws SQLException{
+		if((rs != null) && !rs.isClosed())
+			rs.close();
+		if((stmt != null) && !stmt.isClosed())
+			stmt.close();
+		if((conn != null) && !conn.isClosed())
+			conn.close();
+	}
 	
 	public Orgao buscarPorId(int id) throws SQLException{
 		Connection conn = null;
@@ -38,12 +47,7 @@ public class OrgaoDAO {
 				return null;
 			}
 		}finally{
-			if((rs != null) && !rs.isClosed())
-				rs.close();
-			if((stmt != null) && !stmt.isClosed())
-				stmt.close();
-			if((conn != null) && !conn.isClosed())
-				conn.close();
+			closeCon(conn,stmt,rs);
 		}
 	}
 	
@@ -70,12 +74,7 @@ public class OrgaoDAO {
 			
 			return list;
 		}finally{
-			if((rs != null) && !rs.isClosed())
-				rs.close();
-			if((stmt != null) && !stmt.isClosed())
-				stmt.close();
-			if((conn != null) && !conn.isClosed())
-				conn.close();
+			closeCon(conn,stmt,rs);
 		}
 	}
 	
@@ -105,12 +104,7 @@ public class OrgaoDAO {
 			
 			return list;
 		}finally{
-			if((rs != null) && !rs.isClosed())
-				rs.close();
-			if((stmt != null) && !stmt.isClosed())
-				stmt.close();
-			if((conn != null) && !conn.isClosed())
-				conn.close();
+			closeCon(conn,stmt,rs);
 		}
 	}
 	
@@ -140,12 +134,7 @@ public class OrgaoDAO {
 			
 			return list;
 		}finally{
-			if((rs != null) && !rs.isClosed())
-				rs.close();
-			if((stmt != null) && !stmt.isClosed())
-				stmt.close();
-			if((conn != null) && !conn.isClosed())
-				conn.close();
+			closeCon(conn,stmt,rs);
 		}
 	}
 	
@@ -173,12 +162,7 @@ public class OrgaoDAO {
 			
 			return list;
 		}finally{
-			if((rs != null) && !rs.isClosed())
-				rs.close();
-			if((stmt != null) && !stmt.isClosed())
-				stmt.close();
-			if((conn != null) && !conn.isClosed())
-				conn.close();
+			closeCon(conn,stmt,rs);
 		}
 	}
 	
@@ -208,12 +192,7 @@ public class OrgaoDAO {
 			
 			return list;
 		}finally{
-			if((rs != null) && !rs.isClosed())
-				rs.close();
-			if((stmt != null) && !stmt.isClosed())
-				stmt.close();
-			if((conn != null) && !conn.isClosed())
-				conn.close();
+			closeCon(conn,stmt,rs);
 		}
 	}
 	
@@ -239,12 +218,7 @@ public class OrgaoDAO {
 				return null;
 			}
 		}finally{
-			if((rs != null) && !rs.isClosed())
-				rs.close();
-			if((stmt != null) && !stmt.isClosed())
-				stmt.close();
-			if((conn != null) && !conn.isClosed())
-				conn.close();
+			closeCon(conn,stmt,rs);
 		}
 	}
 	
@@ -270,12 +244,7 @@ public class OrgaoDAO {
 				return null;
 			}
 		}finally{
-			if((rs != null) && !rs.isClosed())
-				rs.close();
-			if((stmt != null) && !stmt.isClosed())
-				stmt.close();
-			if((conn != null) && !conn.isClosed())
-				conn.close();
+			closeCon(conn,stmt,rs);
 		}
 	}
 	
@@ -296,12 +265,7 @@ public class OrgaoDAO {
 			
 			return rs.next();
 		}finally{
-			if((rs != null) && !rs.isClosed())
-				rs.close();
-			if((stmt != null) && !stmt.isClosed())
-				stmt.close();
-			if((conn != null) && !conn.isClosed())
-				conn.close();
+			closeCon(conn,stmt,rs);
 		}
 	}
 	

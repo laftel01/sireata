@@ -8,6 +8,11 @@ import br.edu.utfpr.dv.sireata.dao.PautaDAO;
 import br.edu.utfpr.dv.sireata.model.Pauta;
 
 public class PautaBO {
+
+	public void exceptionTreatment(Exception e) throws Exception{
+		Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
+		throw new Exception(e.getMessage());
+	}
 	
 	public Pauta buscarPorId(int id) throws Exception{
 		try{
@@ -15,9 +20,8 @@ public class PautaBO {
 			
 			return dao.buscarPorId(id);
 		}catch(Exception e){
-			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
-			
-			throw new Exception(e.getMessage());
+			exceptionTreatment(e);
+			return null;
 		}
 	}
 	
@@ -27,9 +31,8 @@ public class PautaBO {
 			
 			return dao.listarPorAta(idAta);
 		}catch(Exception e){
-			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
-			
-			throw new Exception(e.getMessage());
+			exceptionTreatment(e);
+			return null;
 		}
 	}
 	
@@ -51,9 +54,8 @@ public class PautaBO {
 			
 			return dao.salvar(pauta);
 		}catch(Exception e){
-			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
-			
-			throw new Exception(e.getMessage());
+			exceptionTreatment(e);
+			return 0;
 		}
 	}
 	
@@ -67,9 +69,7 @@ public class PautaBO {
 			
 			dao.excluir(id);
 		}catch(Exception e){
-			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
-			
-			throw new Exception(e.getMessage());
+			exceptionTreatment(e);
 		}
 	}
 

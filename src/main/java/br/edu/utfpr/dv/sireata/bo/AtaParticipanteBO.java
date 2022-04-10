@@ -9,15 +9,20 @@ import br.edu.utfpr.dv.sireata.model.AtaParticipante;
 
 public class AtaParticipanteBO {
 	
+	public void exceptionTreatment(Exception e) throws Exception{
+		Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
+		
+		throw new Exception(e.getMessage());
+	}
+	
 	public AtaParticipante buscarPorId(int id) throws Exception{
 		try{
 			AtaParticipanteDAO dao = new AtaParticipanteDAO();
 			
 			return dao.buscarPorId(id);
 		}catch(Exception e){
-			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
-			
-			throw new Exception(e.getMessage());
+			exceptionTreatment(e);
+			return null;
 		}
 	}
 	
@@ -27,9 +32,8 @@ public class AtaParticipanteBO {
 			
 			return dao.listarPorAta(idAta);
 		}catch(Exception e){
-			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
-			
-			throw new Exception(e.getMessage());
+			exceptionTreatment(e);
+			return null;
 		}
 	}
 	
@@ -57,9 +61,8 @@ public class AtaParticipanteBO {
 			
 			return dao.salvar(participante);
 		}catch(Exception e){
-			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
-			
-			throw new Exception(e.getMessage());
+			exceptionTreatment(e);
+			return 0;
 		}
 	}
 	
@@ -73,9 +76,7 @@ public class AtaParticipanteBO {
 			
 			dao.excluir(id);
 		}catch(Exception e){
-			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
-			
-			throw new Exception(e.getMessage());
+			exceptionTreatment(e);
 		}
 	}
 

@@ -11,6 +11,15 @@ import java.util.List;
 import br.edu.utfpr.dv.sireata.model.AtaParticipante;
 
 public class AtaParticipanteDAO {
+
+	private void closeCon(Connection conn, Statement stmt, ResultSet rs) throws SQLException{
+		if((rs != null) && !rs.isClosed())
+			rs.close();
+		if((stmt != null) && !stmt.isClosed())
+			stmt.close();
+		if((conn != null) && !conn.isClosed())
+			conn.close();
+	}
 	
 	public AtaParticipante buscarPorId(int id) throws SQLException{
 		Connection conn = null;
@@ -33,12 +42,7 @@ public class AtaParticipanteDAO {
 				return null;
 			}
 		}finally{
-			if((rs != null) && !rs.isClosed())
-				rs.close();
-			if((stmt != null) && !stmt.isClosed())
-				stmt.close();
-			if((conn != null) && !conn.isClosed())
-				conn.close();
+			closeCon(conn,stmt,rs);
 		}
 	}
 	
@@ -63,12 +67,7 @@ public class AtaParticipanteDAO {
 			
 			return list;
 		}finally{
-			if((rs != null) && !rs.isClosed())
-				rs.close();
-			if((stmt != null) && !stmt.isClosed())
-				stmt.close();
-			if((conn != null) && !conn.isClosed())
-				conn.close();
+			closeCon(conn,stmt,rs);
 		}
 	}
 	
@@ -110,12 +109,7 @@ public class AtaParticipanteDAO {
 			
 			return participante.getIdAtaParticipante();
 		}finally{
-			if((rs != null) && !rs.isClosed())
-				rs.close();
-			if((stmt != null) && !stmt.isClosed())
-				stmt.close();
-			if((conn != null) && !conn.isClosed())
-				conn.close();
+			closeCon(conn,stmt,rs);
 		}
 	}
 	
@@ -129,10 +123,7 @@ public class AtaParticipanteDAO {
 		
 			stmt.execute("DELETE FROM ataparticipantes WHERE idAtaParticipante=" + String.valueOf(id));
 		}finally{
-			if((stmt != null) && !stmt.isClosed())
-				stmt.close();
-			if((conn != null) && !conn.isClosed())
-				conn.close();
+			closeCon(conn,stmt,null);
 		}
 	}
 	

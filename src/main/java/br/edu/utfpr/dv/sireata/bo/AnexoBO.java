@@ -8,6 +8,11 @@ import br.edu.utfpr.dv.sireata.dao.AnexoDAO;
 import br.edu.utfpr.dv.sireata.model.Anexo;
 
 public class AnexoBO {
+	public void exceptionTreatment(Exception e) throws Exception{
+		Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
+		
+		throw new Exception(e.getMessage());
+	}
 
 	public Anexo buscarPorId(int id) throws Exception{
 		try{
@@ -15,9 +20,8 @@ public class AnexoBO {
 			
 			return dao.buscarPorId(id);
 		}catch(Exception e){
-			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
-			
-			throw new Exception(e.getMessage());
+			exceptionTreatment(e);
+			return null;
 		}
 	}
 	
@@ -27,9 +31,8 @@ public class AnexoBO {
 			
 			return dao.listarPorAta(idAta);
 		}catch(Exception e){
-			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
-			
-			throw new Exception(e.getMessage());
+			exceptionTreatment(e);
+			return null;
 		}
 	}
 	
@@ -54,9 +57,8 @@ public class AnexoBO {
 			
 			return dao.salvar(anexo);
 		}catch(Exception e){
-			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
-			
-			throw new Exception(e.getMessage());
+			exceptionTreatment(e);
+			return 0;
 		}
 	}
 	
@@ -70,9 +72,7 @@ public class AnexoBO {
 			
 			dao.excluir(id);
 		}catch(Exception e){
-			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
-			
-			throw new Exception(e.getMessage());
+			exceptionTreatment(e);
 		}
 	}
 	

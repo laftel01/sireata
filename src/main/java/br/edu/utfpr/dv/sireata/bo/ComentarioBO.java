@@ -9,6 +9,11 @@ import br.edu.utfpr.dv.sireata.model.Comentario;
 import br.edu.utfpr.dv.sireata.model.Comentario.SituacaoComentario;
 
 public class ComentarioBO {
+
+	public void exceptionTreatment(Exception e) throws Exception{
+		Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
+		throw new Exception(e.getMessage());
+	}
 	
 	public Comentario buscarPorId(int id) throws Exception{
 		try{
@@ -16,9 +21,8 @@ public class ComentarioBO {
 			
 			return dao.buscarPorId(id);
 		}catch(Exception e){
-			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
-			
-			throw new Exception(e.getMessage());
+			exceptionTreatment(e);
+			return null;
 		}
 	}
 	
@@ -28,9 +32,8 @@ public class ComentarioBO {
 			
 			return dao.buscarPorUsuario(idUsuario, idPauta);
 		}catch(Exception e){
-			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
-			
-			throw new Exception(e.getMessage());
+			exceptionTreatment(e);
+			return null;
 		}
 	}
 	
@@ -40,9 +43,8 @@ public class ComentarioBO {
 			
 			return dao.listarPorPauta(idPauta);
 		}catch(Exception e){
-			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
-			
-			throw new Exception(e.getMessage());
+			exceptionTreatment(e);
+			return null;
 		}
 	}
 	
@@ -67,9 +69,8 @@ public class ComentarioBO {
 			
 			return dao.salvar(comentario);
 		}catch(Exception e){
-			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
-			
-			throw new Exception(e.getMessage());
+			exceptionTreatment(e);
+			return 0;
 		}
 	}
 

@@ -8,6 +8,11 @@ import br.edu.utfpr.dv.sireata.dao.DepartamentoDAO;
 import br.edu.utfpr.dv.sireata.model.Departamento;
 
 public class DepartamentoBO {
+
+	public void exceptionTreatment(Exception e) throws Exception{
+		Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
+		throw new Exception(e.getMessage());
+	}
 	
 	public Departamento buscarPorId(int id) throws Exception{
 		try{
@@ -15,9 +20,8 @@ public class DepartamentoBO {
 			
 			return dao.buscarPorId(id);
 		}catch(Exception e){
-			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
-			
-			throw new Exception(e.getMessage());
+			exceptionTreatment(e);
+			return null;
 		}
 	}
 	
@@ -27,9 +31,8 @@ public class DepartamentoBO {
 			
 			return dao.buscarPorOrgao(idOrgao);
 		}catch(Exception e){
-			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
-			
-			throw new Exception(e.getMessage());
+			exceptionTreatment(e);
+			return null;
 		}
 	}
 	
@@ -39,9 +42,8 @@ public class DepartamentoBO {
 			
 			return dao.listarTodos(apenasAtivos);
 		}catch(Exception e){
-			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
-			
-			throw new Exception(e.getMessage());
+			exceptionTreatment(e);
+			return null;
 		}
 	}
 	
@@ -51,9 +53,8 @@ public class DepartamentoBO {
 			
 			return dao.listarPorCampus(idCampus, apenasAtivos);
 		}catch(Exception e){
-			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
-			
-			throw new Exception(e.getMessage());
+			exceptionTreatment(e);
+			return null;
 		}
 	}
 	
@@ -63,9 +64,8 @@ public class DepartamentoBO {
 			
 			return dao.listarParaCriacaoAta(idCampus, idUsuario);
 		}catch(Exception e){
-			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
-			
-			throw new Exception(e.getMessage());
+			exceptionTreatment(e);
+			return null;
 		}
 	}
 	
@@ -75,9 +75,8 @@ public class DepartamentoBO {
 			
 			return dao.listarParaConsultaAtas(idCampus, idUsuario);
 		}catch(Exception e){
-			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
-			
-			throw new Exception(e.getMessage());
+			exceptionTreatment(e);
+			return null;
 		}
 	}
 	
@@ -94,9 +93,8 @@ public class DepartamentoBO {
 			
 			return dao.salvar(departamento);
 		}catch(Exception e){
-			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
-			
-			throw new Exception(e.getMessage());
+			exceptionTreatment(e);
+			return 0;
 		}
 	}
 
