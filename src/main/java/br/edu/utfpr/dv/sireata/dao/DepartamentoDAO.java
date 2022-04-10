@@ -11,16 +11,7 @@ import java.util.List;
 
 import br.edu.utfpr.dv.sireata.model.Departamento;
 
-public class DepartamentoDAO {
-
-	private void closeCon(Connection conn, Statement stmt, ResultSet rs) throws SQLException{
-		if((rs != null) && !rs.isClosed())
-			rs.close();
-		if((stmt != null) && !stmt.isClosed())
-			stmt.close();
-		if((conn != null) && !conn.isClosed())
-			conn.close();
-	}
+public class DepartamentoDAO extends GenericoDAO {
 	
 	public Departamento buscarPorId(int id) throws SQLException{
 		Connection conn = null;

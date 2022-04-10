@@ -1,19 +1,12 @@
 package br.edu.utfpr.dv.sireata.bo;
 
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import br.edu.utfpr.dv.sireata.dao.PautaDAO;
 import br.edu.utfpr.dv.sireata.model.Pauta;
 
-public class PautaBO {
+public class PautaBO extends GenericoBO {
 
-	public void exceptionTreatment(Exception e) throws Exception{
-		Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
-		throw new Exception(e.getMessage());
-	}
-	
 	public Pauta buscarPorId(int id) throws Exception{
 		try{
 			PautaDAO dao = new PautaDAO();

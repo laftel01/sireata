@@ -1,18 +1,11 @@
 package br.edu.utfpr.dv.sireata.bo;
 
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import br.edu.utfpr.dv.sireata.dao.DepartamentoDAO;
 import br.edu.utfpr.dv.sireata.model.Departamento;
 
-public class DepartamentoBO {
-
-	public void exceptionTreatment(Exception e) throws Exception{
-		Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
-		throw new Exception(e.getMessage());
-	}
+public class DepartamentoBO extends GenericoBO {
 	
 	public Departamento buscarPorId(int id) throws Exception{
 		try{

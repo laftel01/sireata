@@ -15,13 +15,8 @@ import br.edu.utfpr.dv.sireata.ldap.LdapUtils;
 import br.edu.utfpr.dv.sireata.model.Usuario;
 import br.edu.utfpr.dv.sireata.util.StringUtils;
 
-public class UsuarioBO {
+public class UsuarioBO extends GenericoBO {
 
-	public void exceptionTreatment(Exception e) throws Exception{
-		Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
-		throw new Exception(e.getMessage());
-	}
-	
 	public List<Usuario> listarTodos(boolean apenasAtivos) throws Exception{
 		try {
 			UsuarioDAO dao = new UsuarioDAO();

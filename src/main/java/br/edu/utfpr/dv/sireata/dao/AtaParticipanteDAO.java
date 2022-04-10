@@ -10,17 +10,8 @@ import java.util.List;
 
 import br.edu.utfpr.dv.sireata.model.AtaParticipante;
 
-public class AtaParticipanteDAO {
+public class AtaParticipanteDAO extends GenericoDAO {
 
-	private void closeCon(Connection conn, Statement stmt, ResultSet rs) throws SQLException{
-		if((rs != null) && !rs.isClosed())
-			rs.close();
-		if((stmt != null) && !stmt.isClosed())
-			stmt.close();
-		if((conn != null) && !conn.isClosed())
-			conn.close();
-	}
-	
 	public AtaParticipante buscarPorId(int id) throws SQLException{
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -123,7 +114,7 @@ public class AtaParticipanteDAO {
 		
 			stmt.execute("DELETE FROM ataparticipantes WHERE idAtaParticipante=" + String.valueOf(id));
 		}finally{
-			closeCon(conn,stmt,null);
+			closeCon(conn,stmt);
 		}
 	}
 	

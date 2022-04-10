@@ -10,16 +10,7 @@ import java.util.List;
 
 import br.edu.utfpr.dv.sireata.model.Usuario;
 
-public class UsuarioDAO {
-
-	private void closeCon(Connection conn, Statement stmt, ResultSet rs) throws SQLException{
-		if((rs != null) && !rs.isClosed())
-			rs.close();
-		if((stmt != null) && !stmt.isClosed())
-			stmt.close();
-		if((conn != null) && !conn.isClosed())
-			conn.close();
-	}
+public class UsuarioDAO extends GenericoDAO{
 	
 	public Usuario buscarPorLogin(String login) throws SQLException{
 		Connection conn = null;

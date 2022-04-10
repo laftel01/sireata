@@ -10,17 +10,8 @@ import java.util.List;
 
 import br.edu.utfpr.dv.sireata.model.Pauta;
 
-public class PautaDAO {
+public class PautaDAO extends GenericoDAO{
 
-	private void closeCon(Connection conn, Statement stmt, ResultSet rs) throws SQLException{
-		if((rs != null) && !rs.isClosed())
-			rs.close();
-		if((stmt != null) && !stmt.isClosed())
-			stmt.close();
-		if((conn != null) && !conn.isClosed())
-			conn.close();
-	}
-	
 	public Pauta buscarPorId(int id) throws SQLException{
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -117,7 +108,7 @@ public class PautaDAO {
 		
 			stmt.execute("DELETE FROM pautas WHERE idPauta=" + String.valueOf(id));
 		}finally{
-			closeCon(conn,stmt,null);
+			closeCon(conn,stmt);
 		}
 	}
 	

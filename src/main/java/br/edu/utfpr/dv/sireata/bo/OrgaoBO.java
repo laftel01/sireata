@@ -1,21 +1,14 @@
 package br.edu.utfpr.dv.sireata.bo;
 
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import br.edu.utfpr.dv.sireata.dao.OrgaoDAO;
 import br.edu.utfpr.dv.sireata.model.Orgao;
 import br.edu.utfpr.dv.sireata.model.OrgaoMembro;
 import br.edu.utfpr.dv.sireata.model.Usuario;
 
-public class OrgaoBO {
+public class OrgaoBO extends GenericoBO {
 
-	public void exceptionTreatment(Exception e) throws Exception{
-		Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
-		throw new Exception(e.getMessage());
-	}
-	
 	public Orgao buscarPorId(int id) throws Exception{
 		try{
 			OrgaoDAO dao = new OrgaoDAO();

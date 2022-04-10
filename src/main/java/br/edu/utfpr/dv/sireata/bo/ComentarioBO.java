@@ -1,20 +1,13 @@
 package br.edu.utfpr.dv.sireata.bo;
 
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import br.edu.utfpr.dv.sireata.dao.ComentarioDAO;
 import br.edu.utfpr.dv.sireata.model.Comentario;
 import br.edu.utfpr.dv.sireata.model.Comentario.SituacaoComentario;
 
-public class ComentarioBO {
+public class ComentarioBO extends GenericoBO {
 
-	public void exceptionTreatment(Exception e) throws Exception{
-		Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
-		throw new Exception(e.getMessage());
-	}
-	
 	public Comentario buscarPorId(int id) throws Exception{
 		try{
 			ComentarioDAO dao = new ComentarioDAO();

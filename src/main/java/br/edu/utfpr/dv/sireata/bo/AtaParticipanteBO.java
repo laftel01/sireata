@@ -1,20 +1,12 @@
 package br.edu.utfpr.dv.sireata.bo;
 
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import br.edu.utfpr.dv.sireata.dao.AtaParticipanteDAO;
 import br.edu.utfpr.dv.sireata.model.AtaParticipante;
 
-public class AtaParticipanteBO {
-	
-	public void exceptionTreatment(Exception e) throws Exception{
-		Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
+public class AtaParticipanteBO extends GenericoBO{
 		
-		throw new Exception(e.getMessage());
-	}
-	
 	public AtaParticipante buscarPorId(int id) throws Exception{
 		try{
 			AtaParticipanteDAO dao = new AtaParticipanteDAO();

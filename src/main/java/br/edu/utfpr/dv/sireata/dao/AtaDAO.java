@@ -13,16 +13,7 @@ import br.edu.utfpr.dv.sireata.model.Ata;
 import br.edu.utfpr.dv.sireata.model.Ata.TipoAta;
 import br.edu.utfpr.dv.sireata.util.DateUtils;
 
-public class AtaDAO {
-	
-	private void closeCon(Connection conn, Statement stmt, ResultSet rs) throws SQLException{
-		if((rs != null) && !rs.isClosed())
-			rs.close();
-		if((stmt != null) && !stmt.isClosed())
-			stmt.close();
-		if((conn != null) && !conn.isClosed())
-			conn.close();
-	}
+public class AtaDAO extends GenericoDAO{
 	
 	public Ata buscarPorId(int id) throws SQLException{
 		Connection conn = null;
@@ -468,7 +459,7 @@ public class AtaDAO {
 			
 			stmt.execute();
 		}finally{
-			closeCon(conn,stmt,null);
+			closeCon(conn,stmt);
 		}
 	}
 	
@@ -482,7 +473,7 @@ public class AtaDAO {
 		
 			stmt.execute("UPDATE atas SET aceitarComentarios=1 WHERE publicada=0 AND idAta=" + String.valueOf(idAta));
 		}finally{
-			closeCon(conn,stmt,null);
+			closeCon(conn,stmt);
 		}
 	}
 	
@@ -496,7 +487,7 @@ public class AtaDAO {
 		
 			stmt.execute("UPDATE atas SET aceitarComentarios=0 WHERE idAta=" + String.valueOf(idAta));
 		}finally{
-			closeCon(conn,stmt,null);
+			closeCon(conn,stmt);
 		}
 	}
 	
@@ -630,7 +621,7 @@ public class AtaDAO {
 			throw ex;
 		}finally{
 			conn.setAutoCommit(true);
-			closeCon(conn,stmt,null);
+			closeCon(conn,stmt);
 		}
 	}
 

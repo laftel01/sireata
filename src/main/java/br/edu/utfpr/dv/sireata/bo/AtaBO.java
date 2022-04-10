@@ -6,8 +6,6 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.pdfbox.multipdf.PDFMergerUtility;
@@ -29,13 +27,7 @@ import br.edu.utfpr.dv.sireata.model.AtaReport;
 import br.edu.utfpr.dv.sireata.model.Orgao;
 import br.edu.utfpr.dv.sireata.model.ParticipanteReport;
 
-public class AtaBO {
-	
-	public void exceptionTreatment(Exception e) throws Exception{
-		Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
-		
-		throw new Exception(e.getMessage());
-	}
+public class AtaBO extends GenericoBO{
 	
 	public Ata buscarPorId(int id) throws Exception{
 		try{
