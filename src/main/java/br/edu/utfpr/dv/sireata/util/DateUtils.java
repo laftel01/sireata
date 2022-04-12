@@ -7,6 +7,11 @@ import java.util.Date;
 
 public class DateUtils {
 
+	private static Calendar calSetup(Date date) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		return cal;
+	}
 	public static Calendar getToday(){
 		Calendar today = Calendar.getInstance();
 		today.set(Calendar.HOUR_OF_DAY, 0);
@@ -52,33 +57,25 @@ public class DateUtils {
 	}
 	
 	public static int getDayOfMonth(Date date){
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(date);
-		return cal.get(Calendar.DAY_OF_MONTH);
+		return calSetup(date).get(Calendar.DAY_OF_MONTH);
 	}
 	
 	public static int getMonth(Date date){
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(date);
-		return cal.get(Calendar.MONTH);
+		return calSetup(date).get(Calendar.MONTH);
 	}
 	
 	public static int getYear(Date date){
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(date);
-		return cal.get(Calendar.YEAR);
+		return calSetup(date).get(Calendar.YEAR);
 	}
 	
 	public static int getHour(Date date){
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(date);
-		return cal.get(Calendar.HOUR_OF_DAY);
+		return calSetup(date).get(Calendar.HOUR_OF_DAY);
 	}
 	
 	public static int getMinute(Date date){
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(date);
-		return cal.get(Calendar.MINUTE);
+		return calSetup(date).get(Calendar.MINUTE);
 	}
 	
 	public static Date concat(Date date, Date time){
