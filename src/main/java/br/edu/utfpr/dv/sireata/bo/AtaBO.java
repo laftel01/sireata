@@ -359,7 +359,6 @@ public class AtaBO extends GenericoBO{
 			ata.setParticipantes(apbo.listarPorAta(idAta));
 			
 			for(AtaParticipante participante : ata.getParticipantes()){
-				OrgaoDAO odao = new OrgaoDAO();
 				ParticipanteReport pr = new ParticipanteReport();
 				
 				pr.setNome(participante.getParticipante().getNome() + (participante.getDesignacao().isEmpty() ? "" : " (" + participante.getDesignacao() + ")"));
