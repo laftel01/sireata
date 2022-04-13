@@ -200,6 +200,32 @@ public class AtaView extends ListView {
 		}
 	}
 	
+	private void excluirAtaNaoNull(Object idAta) throws Exception{
+		AtaBO bo = new AtaBO();
+		
+		if(bo.isPresidente(Session.getUsuario().getIdUsuario(), (int)idAta)) {
+			ConfirmDialog.show(UI.getCurrent(), "Confirma a exclusão da ata? Esta ação não poderá ser revertida.", new ConfirmDialog.Listener() {
+                public void onClose(ConfirmDialog dialog) {
+                    if (dialog.isConfirmed()) {
+                    	try {
+                    		bo.excluir((int)idAta, Session.getUsuario().getIdUsuario());
+                    		
+                    		Notification.show("Excluir Ata", "Ata excluída com sucesso.", Notification.Type.WARNING_MESSAGE);
+                    		
+                    		atualizarGrid();
+						} catch (Exception e) {
+							Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
+							
+							Notification.show("Excluir Ata", e.getMessage(), Notification.Type.ERROR_MESSAGE);
+						}
+                    }
+                }
+            });
+		} else {
+			throw new Exception("Apenas o presidente da reunião pode excluir a ata.");
+		}
+	
+	}
 	private void excluir() {
 		try{
 			Object idAta = this.getIdSelecionado();
@@ -207,29 +233,7 @@ public class AtaView extends ListView {
 			if(idAta == null){
 	    		Notification.show("Excluir Ata", "Selecione a ata para excluir.", Notification.Type.WARNING_MESSAGE);
 	    	}else{
-				AtaBO bo = new AtaBO();
-				
-				if(bo.isPresidente(Session.getUsuario().getIdUsuario(), (int)idAta)) {
-					ConfirmDialog.show(UI.getCurrent(), "Confirma a exclusão da ata? Esta ação não poderá ser revertida.", new ConfirmDialog.Listener() {
-		                public void onClose(ConfirmDialog dialog) {
-		                    if (dialog.isConfirmed()) {
-		                    	try {
-		                    		bo.excluir((int)idAta, Session.getUsuario().getIdUsuario());
-		                    		
-		                    		Notification.show("Excluir Ata", "Ata excluída com sucesso.", Notification.Type.WARNING_MESSAGE);
-		                    		
-		                    		atualizarGrid();
-								} catch (Exception e) {
-									Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
-									
-									Notification.show("Excluir Ata", e.getMessage(), Notification.Type.ERROR_MESSAGE);
-								}
-		                    }
-		                }
-		            });
-				} else {
-					throw new Exception("Apenas o presidente da reunião pode excluir a ata.");
-				}
+	    		excluirAtaNaoNull(idAta);
 	    	}
 		}catch(Exception e){
 			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
@@ -240,13 +244,11 @@ public class AtaView extends ListView {
 
 	@Override
 	public void excluir(Object id) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void filtrar() throws Exception {
-		// TODO Auto-generated method stub
 		
 	}
 	
@@ -257,7 +259,32 @@ public class AtaView extends ListView {
 	public void setTipo(int tipo){
 		this.tipo = tipo;
 	}
-	
+
+	private void publicarAtaNaoNull(Object idAta) throws Exception{
+		AtaBO bo = new AtaBO();
+		
+		if(bo.isPresidenteOuSecretario(Session.getUsuario().getIdUsuario(), (int)idAta)){
+			ConfirmDialog.show(UI.getCurrent(), "Confirma a publicação da ata? Esta ação não poderá ser revertida.", new ConfirmDialog.Listener() {
+                public void onClose(ConfirmDialog dialog) {
+                    if (dialog.isConfirmed()) {
+                    	try {
+                    		bo.publicar((int)idAta);
+                    		
+                    		Notification.show("Publicar Ata", "Ata publicada com sucesso.", Notification.Type.WARNING_MESSAGE);
+                    		
+                    		atualizarGrid();
+						} catch (Exception e) {
+							Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
+							
+							Notification.show("Publicar Ata", e.getMessage(), Notification.Type.ERROR_MESSAGE);
+						}
+                    }
+                }
+            });
+		}else{
+			Notification.show("Publicar Ata", "Apenas o presidente ou secretário da reunião pode publicar a ata.", Notification.Type.WARNING_MESSAGE);
+		}
+	}
 	private void publicarAta(){
 		try {
 			Object idAta = this.getIdSelecionado();
@@ -265,29 +292,7 @@ public class AtaView extends ListView {
 			if(idAta == null){
 	    		Notification.show("Publicar Ata", "Selecione a ata para publicar.", Notification.Type.WARNING_MESSAGE);
 	    	}else{
-	    		AtaBO bo = new AtaBO();
-	    		
-	    		if(bo.isPresidenteOuSecretario(Session.getUsuario().getIdUsuario(), (int)idAta)){
-	    			ConfirmDialog.show(UI.getCurrent(), "Confirma a publicação da ata? Esta ação não poderá ser revertida.", new ConfirmDialog.Listener() {
-		                public void onClose(ConfirmDialog dialog) {
-		                    if (dialog.isConfirmed()) {
-		                    	try {
-		                    		bo.publicar((int)idAta);
-		                    		
-		                    		Notification.show("Publicar Ata", "Ata publicada com sucesso.", Notification.Type.WARNING_MESSAGE);
-		                    		
-		                    		atualizarGrid();
-								} catch (Exception e) {
-									Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
-									
-									Notification.show("Publicar Ata", e.getMessage(), Notification.Type.ERROR_MESSAGE);
-								}
-		                    }
-		                }
-		            });
-	    		}else{
-	    			Notification.show("Publicar Ata", "Apenas o presidente ou secretário da reunião pode publicar a ata.", Notification.Type.WARNING_MESSAGE);
-	    		}
+	    		publicarAtaNaoNull(idAta);
 	    	}
 		} catch (Exception e) {
 			Logger.getGlobal().log(Level.SEVERE, e.getMessage(), e);
